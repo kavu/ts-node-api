@@ -1,0 +1,43 @@
+{
+  "name": "cards-api",
+  "version": "0.0.1",
+  "author": "Max Riveiro",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node dist/main.js",
+    "start:prod": "yarn migrate && node dist/main.js",
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "clean": "rm -rf dist/",
+    "fmt": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "tslint -c ./tslint.json --fix 'src/**/*.ts'",
+    "migrate": "ts-node $(yarn bin typeorm) migration:run -t=false",
+    "migrate:test": "cross-env DB_NAME=cards_api_test ts-node $(yarn bin typeorm) migration:run -t=false",
+    "test": "cross-env DB_NAME=cards_api_test jest"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-serve-static-core": "^4.17.28",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.21",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.4",
+    "cross-env": "^7.0.3",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.3",
+    "tslint": "^6.1.3",
+    "typescript": "4.6.2"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.7.0",
+    "tslib": "^2.3.1",
+    "typeorm": "0.2.45",
+    "uuid": "^8.3.2"
+  }
+}
